@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>对象简化写法</title>
+</head>
+<body>
+    <script>
+
+        /* 
+        ES6提供了对象的简写方式
+            写法:
+                1. 如果变量名和对象的名字同名,则不直接指定变量名即可
+                2. 对象中的方法不用写 function >>  sing () {xxx}
+        */
+
+        let x = 1;
+        let y = 2;
+        let obj = {
+            x,
+            y,
+            //省略函数的function
+            /* 
+            简化前的写法
+                \/
+            sing: function(){
+
+            }
+            */
+            
+            /* 
+            简化后的写法
+            */
+            sing (){
+                return 'hello'
+            }
+        };
+        console.log(obj.x,obj.y);
+        console.log(obj.sing());
+    </script>
+</body>
+</html>

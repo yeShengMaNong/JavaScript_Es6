@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>es6-变量解构赋值</title>
+</head>
+<body>
+    <script>
+
+        /* 
+        1.解构赋值如果=号右边的值不是一个对象的话会自动转为对象 其中undefined和null不会转为对象 如果=右边的值是undeifned和null的话就报错
+        
+         */
+        /* 
+        es6可以使用一定的模式,从数组和对象中提取值,对变量进行赋值,这被成为解构赋值
+
+        */
+       //以前的变量赋值
+    //    let a = 123;
+    //    let b = 456;
+       
+    //    console.log(a,b);
+
+    
+    //es6 从数组中按照位置提取相关的值
+    let arr = [1,2,3];
+    let [a,b,c] = arr;
+    console.log(a,b,c);   //1,2,3
+
+    console.log(typeof a);
+
+    let [,,third] = [1,2,'ok'];
+    console.log(third);   //提取数组中指定的值
+
+
+
+    let [head,...body] = ['yes','q','w','e'];
+    console.log(head,body);  //head为单独的字符串值 body为一个数组
+
+    let [ab] = [];
+    console.log(ab);  //如果解构没有读取到值 则为undefined
+
+    let [v,[n,m],d] = [12,[20,21],111]
+    console.log(v,[n,m],d);
+    console.log(n,m);
+
+
+    /* 
+    常见解构赋值报错
+    let 右边的形式必须和 = 右边的数据类型一致
+    以下语句 = 右边转为对象之后不具备iterator接口
+    只要某种数据类型解构具有iterator接口就可以采用数组形式的结构赋值
+    */
+    // let [h] = false;
+    // let [foo] = {};
+    // let [foo] = undefined;
+    // let [foo] = null;
+    // let [foo] = NaN;
+    // console.log(foo);
+
+
+    /* 
+    结构赋值使用默认值
+    es6内部使用严格相等运算符 判断一个位置是否有值,只有当一个数组成员养个等于undefined 默认值才会生效
+    */
+
+    let [l,o = 1] = [1];   //变量0指定默认值为1
+    console.log(l,o);
+
+    console.log(null === undefined);
+    console.log(undefined === undefined);
+
+    let [lo,bb=1] = [1,null]   //这种清空不可以使用默认值
+    console.log(lo,bb);
+
+    let [yes,no = 12] = [999,undefined];  //true
+    console.log(yes,no);
+
+
+
+    // 函数
+    function f (){
+        console.log('123');
+    };
+
+    let x;
+    if([1][0] === undefined){
+        x = f();
+    }else{
+        x = [1][0]
+    };
+
+    console.log(x,f());
+
+
+
+    /* 
+    
+    对象的结构赋值
+    */
+
+    
+    </script>
+</body>
+</html>

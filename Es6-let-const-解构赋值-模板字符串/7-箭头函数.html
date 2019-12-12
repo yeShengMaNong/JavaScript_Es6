@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>箭头函数</title>
+</head>
+<body>
+    <button>test</button>
+    <script>
+        /* 
+            箭头函数
+                特点
+                    1.如果箭头函数不需要参数或需要多个参数,就使用一个圆括号代表参数部分  () => {}
+                    2.如果箭头函数的代码块部分多余一条语句,就要使用大括号包起来,并且使用return语句返回  () = {console.log(123),alert(a)}]
+                    3.如果只有一个参数,并且代码块中只有一条语句则不需要用()和{ }                   result  = > return 123;
+                    4.如果有多个参数,则需要用()包起来,如果有多条语句就得使用{}                  num num2 = > {return的结果}
+                    5.如果有{}就是return后的结果 如果没有{}就是这条语句的结果
+
+                    
+         */
+
+
+        //箭头函数演化  \/
+
+        var f = function(){
+            return 5;
+        }  // \/
+        
+        var f = () => 5;
+
+        /* 
+        function (num) {return 6}  ===  num => 6;
+
+        function () {return 10} === () => 10
+         */
+      
+ 
+
+
+
+
+
+        //  不要参数 或者多个参数  \/
+        
+        () => {
+            return 5;
+        }   
+         
+        (num1,num2) => num1 + num2;
+
+        
+        // ------------------------------------------------------
+
+        // 箭头函数代码块语句多于一条的情况 \/
+
+        let btn = document.querySelector('button');
+        let a = 123;
+        btn.onclick = () => {
+            // console.log(a);
+            return 999;
+        };
+
+        // let add = (a,b) => {
+        //     return a+b;
+        // };
+        // add(1,2);
+
+
+
+        
+        /*
+        箭头函数return的值
+
+        如果箭头函数有{}则就是return的 值
+        如果没有大括号就是这条语句的值
+        */
+        // let aaa = 90;
+        // const add = (a, b) => 100;    // 90 不带{}就是函数体该语句的值
+        // let result = add(10,20);
+        // console.log(result);   //undefined  带了{}就是return的值  所以打印该函数返回undefined
+
+
+        var arr = [10, 20, 1, 2];
+        arr.sort((x,y) => {
+            return x - y;
+        });
+        console.log(arr);
+
+        let str = '测试箭头函数不带{}是否是该字符串';
+        let ret = {
+            name:'箭头函数家{}是否返回ret对象'
+        };
+
+        // let test = () => {
+            
+        // };
+        // let result = test();
+        // console.log(result);    // undefined
+
+        let test = () => str;
+        let result = test();
+        console.log(result);    // 测试箭头函数不带{}是否是该字符串
+
+        
+    
+    </script> 
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Promise小结</title>
+</head>
+<body>
+    <script>
+        
+        /* 
+            1. Promise是一个构造函数 该函数有三种状态
+                状态:
+                    1. pending(初始化默认就有)
+                    2. resolved(成功)
+                    3. rejected(失败)
+                    4. 状态只会改变一次
+
+            2. Promise需要一个函数作为参数,该参数中需要指定两个JS引擎提供的函数作为参数,成功或者失败的函数(resolve和reject)
+                . resolve和reject函数 符合条件被调用  分别会改变Promise构造函数的状态 从 pending变为resolved(成功)或者rejected(失败)
+               传递出去的值?
+                    这两个函数都会将结果作为参数传递出去 在then方法中可以拿到对应的值  \/ 
+
+            3. then方法
+                    1. then为Promise实例使用
+                    2. 该方法可以指定两个回调函数 可以只指定成功的回调
+                    3. 该方法可以分别指定 resolved和rejected状态的回调函数 Promise状态为resolved时调用第一个回掉函数 失败时调用第二个 
+                    4. 这两个函数都接收Promise传出的值作为参数  \/
+                                                             \/
+                        Promise {<pending>}__proto__: Promise[[PromiseStatus]]: "resolved"[[PromiseValue]]: "成功回调返回的数据"
+
+            4. 关系?
+                    1. Promise的状态由 他的第一个参数(函数)里面的两个js提供的函数而改变
+                    2. js内置的两个函数 (resolve和reject) 的返回值在then方法中可以被获取
+                    3. then方法中的两个函数 会根据 Promise的状态选择调用其中一个
+
+        */
+        
+
+        let p = new Promise((resolve,reject) => {    //p status === pending
+            
+            setTimeout(() => {
+
+                if(p.PromiseStatus === 'pending') resolve('成功');     //拿不到他的Promise状态
+                let num = Math.random() * 10;
+                if(num > 5){
+                    resolve('成功');
+                    console.log(p);    //Promise {<resolved>: "成功"} 状态为成功 立即调用then的第一个回调函数 并将value作为参数传递出去
+                }
+                else{
+                    reject('失败');
+                    console.log(p);
+                }
+            },2000);
+
+        });
+        p.then(
+            value => console.log(value),   // Promise状态为 resolved时 调用该回调 该函数value形参接收到 resolve('成功') 成功时的回调
+            error => console.log(error) 
+        )
+        console.log(p);
+    </script>
+</body>
+</html>

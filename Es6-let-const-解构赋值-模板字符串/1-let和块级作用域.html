@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>let和const</title>
+</head>
+<body>
+    <script>
+        /* 
+        let 和 const 
+        es6新增了let
+            特点: 
+                1.let用来声明变量,它的用法类似于var,但是所声明的变量,只在let命令所在的代码块内有效。
+                2.let有各自的作用域
+                3.不存在变量提升 在声明之前使用都会报错
+                4.只要块级中let,则该变量就绑定了这个区域,外部同名的变量无法进行操作
+                5.不允许在相同作用域内重复声明同一个变量
+                6;如果需要块级作用域就必须使用{}
+        */
+       
+        /* 
+        let定义的变量在所在的代码块生效 类似于函数内部的变量 在外部是访问不到的 
+                   实例
+                    \/
+        
+        demo1
+         */
+        
+        {
+            let a = 666;
+            var b = 999;
+            console.log(a); //666
+        }
+        console.log(b);    //999
+        // console.log(a);   //Uncaught ReferenceError: a is not defined
+
+        // -------------------------------------------------------------------------
+
+        /* 
+        for循环使用let定义的变量在只能在代码块中使用 如果在for外部引用就会报错 进一步验证了let只能在定义的代码块内使用
+        而使用var定义的循环不管在循环内部还是外部都能引用到变量的值 外部=10 内部1-9
+
+        demo2\/
+        */
+        for (let i = 0; i < 10; i++){
+            // console.log(i); //1-9
+        };
+        // console.log(i);  //Uncaught ReferenceError: i is not defined
+        
+        for (var i = 0; i< 10; i++){
+            // console.log(i); //1-9
+        };
+        // console.log(i); //10
+
+        var a = [];
+        for (let i = 0; i < 10; i++){
+            a[i] = function(){
+                console.log(i);
+            };
+        };
+        a[6]();  //6
+
+        var a = []
+        for (var i = 0; i< 10; i++){
+            a[i] = function(){
+                console.log(i);
+            };
+            
+        };
+        a[6](); //10
+       
+       
+        
+        for (let i = 0; i < 10; i++){
+            let i = 'abc';
+            console.log(i);  // 10 * abc;
+            /* 
+            let有各自的作用域
+            */
+        }
+
+
+        // console.log(hello);    // ReferenceError
+        // let hello = 123;
+
+        console.log(world);   //undefined
+        var world = 456; 
+
+
+
+        // 只要块级作用域中域let 他所声明的变量就绑定了这个区域,不再受外部的影响
+        // var bar = 123;
+        // if(true){
+        //     bar = 567;   //ReferenceError
+        //     let bar;
+        // };
+
+
+
+        let x = 000;
+        let y = x;
+        console.log(x,y);
+
+
+
+        /* 
+        同一个作用域重复声明同一个变量
+        每个代码块都是独立的let变量区域 不可以在同一个重复声明同一个变量
+
+        */ 
+            
+
+        // if(true){
+        //     let a = 1997;   
+        //     var a = 1;    // SyntaxErro
+        // }
+        // 报错
+        // function demo (){
+        //     let aaa = 10;
+        //     let aaa = 100;
+        // }
+
+        function bar(hello){
+            // let hello = 1111;   //报错
+            hello = 123;
+
+            { 
+                let hello = 999;
+                console.log(hello);  //9999
+            }
+            console.log(hello);   //123
+        }
+        bar()
+
+        // 变量提升和var的坏处 
+        var tmp = 123456;
+        function hello(){
+            console.log(tmp); //undefined
+            if(false){
+                var tmp = '???'
+            };
+        };
+        hello();
+
+
+
+       
+        /* 
+         防止变量被污染
+         var 的做法
+        */
+
+        (function(){
+            var a = 1123;
+        })();
+
+        //let 
+        {
+            let a = 213;
+            {
+                let b = 456;
+            }
+        }
+        
+    </script>
+</body>
+</html>

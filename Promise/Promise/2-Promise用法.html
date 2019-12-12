@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    
+        /* 
+            ES6 规定 Promise是一个构造函数,用来生成Promise实例
+                1.可以使用new来实例对象
+
+            详情
+                1.Promise构造函数需要接收一个参数作为函数,该函数的像个参数分别为resolve和reject,着两个参数是两个函数,由JS提供,不需要自己部署
+                
+         */
+
+        let p = new Promise((resolve,reject) => {
+            if(true){
+               resolve(value) 
+            }else{
+                reject(error)
+            }
+        });
+
+    </script>
+</body>
+</html>

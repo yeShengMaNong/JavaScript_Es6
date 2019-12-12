@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 
+
+
+        
+     -->
+    <script>
+      /* 
+        promise特点
+            1.对象的状态不受外部的影响,该对象代表一个异步操作,一共有三种状态, pending(进行中) fuifilled(成功) rejected(失败)
+            需要注意的是一旦状态改变,就不会在变了
+            2.在生成该实例的时候默认是一个pending(初始化的状态); 该构造函数第一个参数是一个函数该函数有两个参数,分别时成功和失败
+                                        \/
+
+
+            2.promise构造函数接收一个函数作为参数,该参数的两个参数分为是resolve和reject,他们是两个函数,有JavaScript部署,不需要自己部署
+                
+            resolve和reject
+                1. resolve函数的作用是,将promise对象的状态从 `未完成` 变为 `成功`,(从pending变为resolved) ,在异步操作成功时调用,并将异步操作的结果,作为参数传递出去
+                2. reject函数的作用是:将promise对象的状态从 `未完成` 变为 `失败` (从pending变为rejected) ,在异步操作失败时调用,并将异步操作报出的错误作为参数传递出去
+        
+        */
+
+      // 简单认识promise
+
+      let p = new Promise((resolve, reject) => {
+        // 异步代码
+        setTimeout(() => {
+          let a = 2;
+          if (a === 2) {
+            resolve(123); //[[PromiseStatus]]: "resolved" 并且会把成功时候的结果最为参数返回
+          } else {
+            reject(456);
+          }
+        }, 2000);
+      });
+      // console.log(p);        //[[PromiseValue]]: 123
+
+
+      //123 该值是执行器函数里面 第一个参数  成功时的结果作为返回值返回了
+
+      /* 
+        Promise实例生成以后,可以用then方法分别指定resolved状态和rejected状态的回调函数
+            1. then可以接收两个参数
+        */
+
+      /* 
+         p.then(function(value){
+            console.log(value);
+        },function(error){
+            console.log(error);
+        }); 
+                    \/
+                    \/
+                    \/
+        */
+
+      p.then(
+        value => console.log(value),
+        error => console.log(error)
+      );
+
+
+    //   function timeout(ms) {
+    //     return new Promise((resolve, reject) => {
+    //       setTimeout(resolve, ms, "done");
+    //     });
+    //   }
+
+    //   timeout(100).then(value => {
+    //     console.log(value);
+    //   });
+
+   
+
+      function time(time){
+
+          return new Promise((resolve,reject) => {
+              setTimeout(() => {
+                  
+              },time,'success');
+              console.log(resolve(147258));
+          });
+      };
+
+    time(3000).then(
+         (successResult) => console.log(successResult),
+          errorResult => console.log(errorResult)
+    );
+      console.log(time());
+      p.then(
+
+    )
+
+    
+    let obj = {
+          name:'赵丽颖',
+          age : 22
+    }
+    let {name,age} = obj;
+    console.log(name,age);
+
+    
+    </script>
+  </body>
+</html>

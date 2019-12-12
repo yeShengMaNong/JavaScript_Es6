@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>let补充</title>
+  </head>
+  <body>
+    <script type="text/javascript">
+      var a = [];
+      for (var i = 0; i < 10; i++) {
+        a[i] = function() {
+          console.log(i);
+        };
+      }
+      console.log(a);
+      a[1](); //10
+      /* 
+        代码解析
+            1. 外部使用定义了一个a数组默认为空
+            2. 循环中的变量使用 var 定义 在循环的时候分别在a数组中存了10个函数 函数体分别输出i
+            3. 在函数外部调用a数组中的某一个函数 结果为10
+         */
+
+      let b = [];
+      for (let i = 0; i < 10; i++) {
+        b[i] = function() {
+          console.log(i);
+        };
+      }
+      console.log(b);
+      b[7](); //7
+
+      /* 
+        let 作用域 let有各自的作用域 
+        */
+      for (let i = 0; i < 3; i++) {
+        let i = "123";
+        console.log(i); //123 * 3
+      }
+
+      /* 
+        let 不存在变量提升
+         */
+
+      console.log(d); //undefined
+      var d = 123;
+      //   console.log(c); //报错
+      let c = 213;
+
+
+      
+
+      /* 
+      重复声明
+      */
+      let aaa = 123;
+      //   let aaa = 23123; //报错
+
+      /* 
+      不允许在函数内部重新声明参数
+      */
+      function demo(x) {
+        //   let x = 213;    //报错
+      }
+      //   demo()
+
+      function demo3(xx) {
+        {
+          let xx = 213;
+          console.log(xx);
+        }
+        return xx;
+      };
+      let result = demo3(1);
+      console.log(result);
+    </script>
+  </body>
+</html>

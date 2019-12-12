@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>es6-const</title>
+</head>
+<body>
+    <script>
+        /* 
+        const声明一个只读的(常量)常量的值一旦修改就不可以改变
+            特点
+                1.const定义的变量是一个常量 不可以修改值(这意味着用了const就是一个不会改变的值)
+                2.const一旦声明变量就需要初始化不能留到以后赋值 否则就报错
+                3.close
+        
+        */
+       
+        const num = 1;
+        // num = 2;
+        console.log(num);   //TypeError:
+
+
+        // 定义变量之后必须对齐进行初始化赋值 否则就报错
+        // console.log(abc);  //SyntaxError
+
+
+
+        // 对于const来说 他和let一样 只在声明的块级作用域内有效 外部是访问不到的
+        if(true){
+            const max = 999;
+            console.log(max);  //999
+        };
+        // console.log(max);  //ReferenceError: max is not defined
+
+
+        //const定义的变量不存在提升 只能在声明赋值后才可以使用
+        // console.log(is);  //ReferenceError: Cannot access 'is' before initialization
+        const is = 888;
+        console.log(is);   //888
+
+
+        //const不可以对同一个变量进行重复声明 
+        var boo = 1234;
+        let age = 18;
+
+        // const boo = 4567;   //报错
+        // const age = 22;     //报错
+
+
+
+        
+    </script>
+</body>
+</html>

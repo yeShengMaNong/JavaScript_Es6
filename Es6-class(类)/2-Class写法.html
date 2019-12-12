@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Es6-Class写法</title>
+</head>
+<body>
+    <script>
+        class Person{
+            constructor(x,y){
+                this.x = x;
+                this.y = y;
+            };
+            
+            
+            sing () {
+                return `${this.x} + ${this.y}`
+            };
+
+            eat () {
+                console.log('吃饭');
+            }
+        };
+
+        let p = new Person(1,2);  
+        console.log(p.x);   //1
+        console.log(p.y);   // 2
+        let result = p.sing()   
+        console.log(result); //3
+        p.eat();
+
+    </script>
+</body>
+</html>

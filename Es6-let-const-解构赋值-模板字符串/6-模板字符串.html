@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>模板字符串</title>
+</head>
+<body>
+    <script>
+        /* 
+        在es6中加强了对uniconde的支持 允许使用 \uxxxx 的形式表示一个字符 其中xxxx表示uniconde编码
+           该表示发值适用于在\u0000 - \uuffff之间的字符 , 一旦超出这个范围 必须使用两个双字节的形式表示
+                改进
+                    1.超出了这个范围的编码只要放入大廓中,也可以正确解读
+                    2.虽然可以通过uniconde编码输出内容 但是该方式我们一般不会采用(繁琐复杂)
+
+         */
+        let a = '\u0061';
+        console.log(a);
+
+        let b  = '\uD842\uDFB7';
+        console.log(b);
+
+        let c = '\u{20BB7}';
+        console.log(c);
+
+
+
+        /* 
+            模板字符串!!!!!!!!!!!!
+                特点
+                    1.模板字符串是增强版本的字符串,用 `` 反引号标识,他可以当做普通字符串去使用,也可以用来定义多行字符串,或者在字符串中嵌入(变量)
+                    2.在模板字符串中可以保留自定义的缩进和空格以及换行
+                    3.在模板中中可以使用变量的值  语法: `${变量`
+                    4.模板字符串可以输出多行字符串
+                    5.可以计算JavaScript表达式的值和引用对象属性和调用函数
+                    6.模板字符串可以嵌套 
+                    7. ..............
+        
+                注意:
+                    1.如果要使用模板字符串引用变量 则变量必须声明 否则报错
+                    2.如果引用的变量不是字符串,则默认调用对象的toString()方法
+                    3.当成普通字符串使用就可以,  (变量有点用) (输出Dom)
+         */
+
+        //--------------------------------------------------
+
+
+        //  普通字符串  \/
+
+        let str = `hello world`;
+        console.log(str);    //hello world
+
+        //--------------------------------------------------
+
+
+        // 多行字符串  \/
+        let manyStr = `
+            hello world,
+            你好啊
+        `;
+        console.log(manyStr);  
+
+        //--------------------------------------------------
+
+        // 字符串中引入变量   \/
+
+        let name = 'zly', time = 18;
+        let result = `test str is ok?${name} + ${time}`;
+        console.log(result);  //test str is ok?zly + 18
+
+        //--------------------------------------------------
+
+        // 模板字符空格和多行字符串缩进是否被保存? \/
+
+        let content = `这是我的标签`;
+        let html = `
+            <ul>
+                <li>${name}</li>
+                <li>${content}</li>
+            </ul>
+        ` 
+        console.log(html);    //true 可以利用该特性生成dom 以及拼接变量的值和拼接字符串
+
+
+        //--------------------------------------------------
+            
+        //计算JS表达式的值以及引用对象属性以及调用函数
+        let min = 10;
+        let max = 20;
+        let add = `${min} + ${max} = ${min + max}`;
+        console.log(add);   //10 + 20 = 30
+
+
+        let obj = {
+            x:1,
+            y:2
+        };
+        let addObj = `${obj.x}+${obj.y}`;
+        console.log(addObj);   //1+2
+
+
+        function demo (){
+            console.log('模板字符串可以调用函数吗');
+        };
+
+        `${demo()}`;   //true
+
+        //-----------------------------------------
+
+        // 模板字符串中有字符串的情况 原样输出 花里胡哨 看起来很NB的样子
+
+        let isStrs = `hello${'world'}`;
+        console.log(isStrs);    //helloworld
+    </script>
+</body>
+</html>

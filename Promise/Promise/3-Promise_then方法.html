@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Promise_then方法</title>
+</head>
+<body>
+    <script>
+        
+        // let p = new Promise((resolve,reject) => {
+        //     let a = 123;
+        //     if(a % 2 == 0) resolve();
+        //     else{
+        //         reject(false);  //无数据
+        //     }
+        // });
+
+        // p.then(
+        //     value => console.log(value),
+        //     error => console.log(error)   //undefined
+        // ).then(
+        //     value => console.log(value),  //undefined   value === true
+        //     error => console.log(error)
+        // )
+        // // 查看Promise状态
+        // console.log(p);    //Promise {<rejected>: undefined} 
+
+
+
+        // demo2  \/
+
+        let result = '成功回调返回的数据';
+        function time(ms){
+            return new Promise((resolve,reject) => {
+                setTimeout(resolve,ms,result);
+            });
+        };
+        let p = time()
+        console.log(p);
+        time(2000).then(
+            value => console.log(value),    //true
+        );
+
+        // 查看Promise状态
+    </script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>es6对象解构赋值</title>
+</head>
+<body>
+    <script>
+        let {a,b} = {a: 'zly', b: 22};
+        console.log(a,b);
+        
+        /* 
+        对象解构错赋值误实例
+        对象解构变量必须与对象属性名同名,才可以取到值
+        2.只要变量和对象的属性名字相同 变量顺序大可不必对应对象的属性名顺序 只要变量名和对象的属性名一致 顺序不一致的时候 对取值完全没有影响
+        3.如果变量没有对应对象的同名属性则取不到值 返回undeifned
+        */
+        let {f,bar} = {bar:'kibo',f:123};
+        console.log(f,bar);
+
+
+
+        //将consolelog对象的log赋值给变量log 则使用log就可以输出内容
+        const {log} = console;
+        log('hello');  
+        
+        
+
+        /* 
+        对象解构赋值其他写法
+            要求
+                1.解构的变量和对象的属性名必须一致
+                2.取到值后以:变量 赋值给:后面自定义的变量
+        1.将从对象中提取的值赋值给其他变量
+        */
+
+        let {foo:baz} = {foo:'aaa'};
+        console.log(baz);
+
+        let obj = {
+            first:'hello',
+            last:'world'
+        };
+
+        let {first:one,last:two} = obj;
+        console.log(one,two);
+        console.log(typeof one);
+        console.log(typeof two);
+        
+
+
+        /* 
+        对象解构默认值
+         */
+        let {bd=3} = {};
+        console.log(bd);
+        
+
+        let {tbd,y=100} = {tbd:'北京市'};
+        console.log(tbd,y);    //北京市 100 y指定默认值
+
+
+        const node = {
+            loc:{
+                start:{
+                    line:1,
+                    column:5
+                }
+            }
+        }
+
+        let {loc,loc:{start},loc:{start:{line}}} = node;
+        console.log(loc,start,line);  //loc对象 start对象 1
+
+
+        let arr = [1,2,3];
+        let {0:first,[arr.length-1]:last} = arr;
+        console.log(first,last);    //1 3 
+    </script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Es6块级作用域</title>
+  </head>
+  <body>
+    <script>
+      /* 
+        var的坏处
+        和没有作用域的缺点
+        */
+      var tmp = new Date();
+      function demo() {
+        console.log(tmp);
+        if (false) {
+          var tmp = `hello world`;
+        }
+      }
+      demo(); //undefined
+
+      var str = "hello";
+      for (var i = 0; i < str.length; i++) {
+        console.log(str[i]);
+      }
+      console.log(i); //计算的变量已成为全局变量
+
+      function demo1() {
+        let a = 123;
+        {
+          let a = 456;
+        }
+        console.log(a); //123
+      }
+      demo1();
+
+      /* 
+       块级作用域中声明函数
+       以下Es6直接报错 因为匿名函数块级作用中没有 f函数
+       */
+
+      function f() {
+        console.log('ok');
+      }
+    //   (function() {
+    //     if (false) {
+    //         function f(){
+    //             console.log('yes');
+    //         };
+    //     };
+    //     f();   //f is not a function  
+    //   })();
+
+      /* 
+      es5则会输出ok
+      */
+
+      /* 
+      以上代码还原Es5环境
+      */
+      (function() {
+        // function f(){console.log('yes');} 提升
+        if (false) {
+            function f(){       //f函数整体提升到匿名函数顶部
+                console.log('yes');
+            };
+        };
+        f();   
+      })();
+    </script>
+  </body>
+</html>

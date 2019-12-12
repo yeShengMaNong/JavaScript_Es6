@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>set和get函数</title>
+</head>
+<body>
+    <script>
+        class Person{
+            constructor(){
+
+            };
+            get prop (){
+                return 'setter'
+            };
+            set prop (value){
+                console.log(value);
+            }
+        };
+        let p = new Person();
+        p.prop = 123;    
+        
+        console.log(p.prop);  //setter
+    </script>
+</body>
+</html>

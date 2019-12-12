@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ES6类</title>
+</head>
+<body>
+    <script>
+        /* 
+        在JavaScript中生成实例对象传统方法是利用构造函数
+
+
+        在ES6中引入了class类这个概念,class作为对象的模型,通过class可以定义类
+        在定义类的时候不需要在前面加上function
+            相关属性:
+                1. class 定义一个类 (构造函数)
+                2. constructor : 类的构造放啊,该属性中的可以写入this,this关键字代表实例对象 
+                3. 在定义方法的时候,直接在类中定义方法即可,不需要加function
+        */    
+
+
+
+        /* 
+            es5构造函数实例
+                \/
+        */
+       function demo (name,age){
+           this.name = name;
+           this.age = age;
+       };
+
+       demo.prototype.sing = function () {
+           console.log('ok');
+       };
+
+       var obj = new demo('zly',23);
+       console.log(obj.name,obj.age);
+       console.log(obj.sing());
+
+
+
+       /* 
+       ES6类的写法  
+            \/
+       */
+
+       class Person{
+
+           constructor(name,age){
+                this.name = name;
+                this.age = age; 
+           }
+
+            hap (){
+               console.log('123');
+               return 456;
+           }
+       };
+
+       console.log(typeof Person);      //function
+       console.log(typeof constructor);  //function
+       let p = new Person('fzk',23);    
+       console.log(p.name,p.age);
+       console.log(p.hap());
+    </script>
+</body>
+</html>
